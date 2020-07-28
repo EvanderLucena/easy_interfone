@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "571134090140",
+    "firebase_url": "https://easy-c7da4.firebaseio.com",
+    "project_id": "easy-c7da4",
+    "storage_bucket": "easy-c7da4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:571134090140:android:31f9f7b422cae091d08659",
+        "android_client_info": {
+          "package_name": "com.example.easy_interfone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "571134090140-0023c7lvf933suevc0d06f3h0isatgij.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQ4CGJayTor2Dxi6qcqYrzPeKKGbcH278"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "571134090140-0023c7lvf933suevc0d06f3h0isatgij.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
