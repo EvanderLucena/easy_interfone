@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'HomeAdmin.dart';
+import 'HomeHosp.dart';
+import 'HomePorteiro.dart';
 import 'model/User.dart';
 
 class Login extends StatefulWidget {
@@ -12,11 +15,13 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerSenha = TextEditingController();
+
   String _msgErro = "";
 
   _validarCampos() {
     String email = _controllerEmail.text;
     String senha = _controllerSenha.text;
+
 
     if (email.isNotEmpty && email.contains("@")) {
       if (senha.isNotEmpty && senha.length > 5) {
@@ -42,14 +47,35 @@ class _LoginState extends State<Login> {
 
   _logarUsuario(User usuario) {
     FirebaseAuth auth = FirebaseAuth.instance;
-    auth
-        .signInWithEmailAndPassword(
+
+    auth.signInWithEmailAndPassword(
             email: usuario.email, password: usuario.senha)
         // ignore: non_constant_identifier_names
         .then((FirebaseUser) {
+
+      Firestore db = Firestore.instance;
+      var uid = FirebaseUser.user.uid;
+      var tipo = db.collection("hospedes").document(uid).collection("tipo");
+
       //fazer a verificação do tipo de user
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomeAdmin()));
+      // ignore: unrelated_type_equality_checks
+      if(tipo == "hospede"){
+
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomeHosp()));
+
+      // ignore: unrelated_type_equality_checks
+      }else if(tipo == "porteiro"){
+
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomePorteiro()));
+      // ignore: unrelated_type_equality_checks
+      }else {
+
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => HomeAdmin()));
+      }
+
     }).catchError((error) {
       setState(() {
         _msgErro = "Erro ao autenticar, verifique usuário e senha";

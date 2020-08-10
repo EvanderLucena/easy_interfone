@@ -15,7 +15,7 @@ class _CadastroHospState extends State<CadastroHosp> {
   TextEditingController _controllerQuarto = TextEditingController();
   TextEditingController _controllerEmail = TextEditingController();
   TextEditingController _controllerSenha = TextEditingController();
-  TextEditingController _controllerTipo = TextEditingController();
+  TextEditingController _controllerTipo = TextEditingController(text: "Hospede");
 
   String _msgErro = "";
 
@@ -24,6 +24,7 @@ class _CadastroHospState extends State<CadastroHosp> {
     String quarto = _controllerQuarto.text;
     String email = _controllerEmail.text;
     String senha = _controllerSenha.text;
+    String tipo = _controllerTipo.text;
 
     if (nome.isNotEmpty) {
       if (quarto.isNotEmpty) {
@@ -37,6 +38,7 @@ class _CadastroHospState extends State<CadastroHosp> {
             hospede.quarto = quarto;
             hospede.email = email;
             hospede.senha = senha;
+            hospede.tipo = tipo;
 
             _cadastrarHosp( hospede );
           } else {
